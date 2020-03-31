@@ -12,7 +12,7 @@ namespace PMS.Marchuk.Repository
         IEnumerable<Project> Find(Expression<Func<Project, bool>> f);
 
         PmsResponse Create(string code, string name);
-        PmsResponse Update(Guid id, string name, State? state);
+        PmsResponse Update(Guid id, string name, State? state, DateTime? startDate, DateTime? endDate);
         PmsResponse Delete(Guid id);
 
         PmsResponse AttachProject(Guid mainProjectId, Guid childProjectId);       

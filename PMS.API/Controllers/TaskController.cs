@@ -11,9 +11,9 @@ namespace PMS.Controllers
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private readonly IUnitOfWork _workUnit;
+        private readonly ITaskUnitOfWork _workUnit;
 
-        public TaskController(IUnitOfWork workUnit)
+        public TaskController(ITaskUnitOfWork workUnit)
         {
             _workUnit = workUnit;
         }

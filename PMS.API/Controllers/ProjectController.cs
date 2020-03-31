@@ -9,9 +9,9 @@ namespace PMS.Controllers
     [Route("api/[controller]")]
     public class ProjectController : ControllerBase
     {
-        private readonly IUnitOfWork _workUnit;
+        private readonly IProjectUnitOfWork _workUnit;
 
-        public ProjectController(IUnitOfWork workUnit)
+        public ProjectController(IProjectUnitOfWork workUnit)
         {
             _workUnit = workUnit;
         }

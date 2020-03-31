@@ -154,7 +154,7 @@ namespace PMS.Marchuk.Repository
         /// <param name="name">Name</param>
         /// <param name="state">State</param>
         /// <returns></returns>
-        public PmsResponse Update(Guid id, string name, State? state)
+        public PmsResponse Update(Guid id, string name, State? state, DateTime? startDate, DateTime? endDate)
         {
             var response = new PmsResponse();
             try
@@ -169,6 +169,16 @@ namespace PMS.Marchuk.Repository
                 if (state.HasValue)
                 {
                     p.State = state.Value;
+                }
+
+                if (startDate != null)
+                {
+                    p.StartDate = startDate.Value;
+                }
+
+                if (endDate != null)
+                {
+                    p.FinishDate = endDate.Value;
                 }
 
                 int r = _dbContext.SaveChanges();

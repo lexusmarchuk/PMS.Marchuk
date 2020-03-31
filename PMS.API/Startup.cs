@@ -22,8 +22,9 @@ namespace PMS.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PmsDbContext>(opt => opt.UseSqlServer(@"Server=MARCHUKALEX;Database=PMSMarchuk;Trusted_Connection=True;"));
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddDbContext<PmsDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IProjectUnitOfWork, ProjectUnitOfWork>();
+            services.AddTransient<ITaskUnitOfWork, TaskUnitOfWork>();
             services.AddTransient<ITaskRepository, TaskRepository>();
             services.AddTransient<IProjectRepository, ProjectRepository>();
             services.AddControllers();
