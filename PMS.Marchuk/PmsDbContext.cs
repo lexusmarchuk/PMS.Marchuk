@@ -12,5 +12,13 @@ namespace PMS.Marchuk
         public PmsDbContext(DbContextOptions<PmsDbContext> options)
             :base(options)
         { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=MARCHUKALEX;Database=PMSMarchuk;Trusted_Connection=True;");
+            }
+        }
     }
 }
