@@ -21,6 +21,12 @@ namespace PMS.Marchuk
             _taskRepository = taskRepository;
         }
 
+        /// <summary>
+        /// Changes Task State.
+        /// </summary>
+        /// <param name="taskId">Task Id.</param>
+        /// <param name="state">State</param>
+        /// <returns></returns>
         public PmsResponse ChangeTaskState(Guid taskId, State state)
         {
             var response = new PmsResponse();
@@ -84,6 +90,10 @@ namespace PMS.Marchuk
             return response;
         }
 
+        /// <summary>
+        /// Update Project State
+        /// </summary>
+        /// <param name="project"></param>
         public void UpdateProjectState(Project project)
         {
             if (project != null)
@@ -120,6 +130,13 @@ namespace PMS.Marchuk
             }
         }
 
+        /// <summary>
+        /// Create Project.
+        /// </summary>
+        /// <param name="code">Code</param>
+        /// <param name="name">Name</param>
+        /// <param name="parentId">Parent Id</param>
+        /// <returns></returns>
         public PmsResponse CreateProject(string code, string name, Guid? parentId)
         {
             PmsResponse response = new PmsResponse();
@@ -159,6 +176,13 @@ namespace PMS.Marchuk
             return response;
         }
 
+        /// <summary>
+        /// Create Task.
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <param name="description">Description</param>
+        /// <param name="projectId">Project Id.</param>
+        /// <returns></returns>
         public PmsResponse CreateTask(string name, string description, Guid projectId)
         {
             var response = new PmsResponse();
@@ -204,11 +228,21 @@ namespace PMS.Marchuk
             return response;
         }
 
+        /// <summary>
+        /// Get Project By Code.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public Project GetProjectByCode(string code)
         {
             return _projectRepository.GetByCode(code);
         }
 
+        /// <summary>
+        /// Get Task by Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Task GetTask(Guid id)
         {
             var task = _taskRepository.Find(x => x.Id == id);
@@ -216,6 +250,13 @@ namespace PMS.Marchuk
             return task.FirstOrDefault();
         }
 
+        /// <summary>
+        /// Create SubTask.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="parentTaskId"></param>
+        /// <returns></returns>
         public PmsResponse CreateSubTask(string name, string description, Guid parentTaskId)
         {
             var response = new PmsResponse();
@@ -239,6 +280,10 @@ namespace PMS.Marchuk
             return response;
         }
 
+        /// <summary>
+        /// Generte Excel report.
+        /// </summary>
+        /// <returns></returns>
         public byte[] GenerateReport()
         {
             var stream = new MemoryStream();

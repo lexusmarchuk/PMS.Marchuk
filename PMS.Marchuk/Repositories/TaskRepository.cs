@@ -16,6 +16,12 @@ namespace PMS.Marchuk.Repository
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Attach Task to Parent Task
+        /// </summary>
+        /// <param name="mainTaskId">Parent Task</param>
+        /// <param name="childTaskId">Current Task</param>
+        /// <returns></returns>
         public PmsResponse Attach(Guid mainTaskId, Guid childTaskId)
         {
             var response = new PmsResponse();
@@ -38,6 +44,13 @@ namespace PMS.Marchuk.Repository
             return response;
         }
 
+        /// <summary>
+        /// Create Task.
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <param name="description">Description</param>
+        /// <param name="projectId">Project Id</param>
+        /// <returns></returns>
         public PmsResponse Create(string name, string description, Guid projectId)
         {
             var response = new PmsResponse();
@@ -67,6 +80,11 @@ namespace PMS.Marchuk.Repository
             return response;
         }
 
+        /// <summary>
+        /// Delete Task
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns></returns>
         public PmsResponse Delete(Guid id)
         {
             var response = new PmsResponse();
@@ -88,6 +106,11 @@ namespace PMS.Marchuk.Repository
             return response;
         }
 
+        /// <summary>
+        /// Find Tasks
+        /// </summary>
+        /// <param name="f">Search expression</param>
+        /// <returns></returns>
         public IEnumerable<Task> Find(Expression<Func<Task, bool>> f)
         {
             return _dbContext.Tasks.Where(f)
@@ -96,6 +119,12 @@ namespace PMS.Marchuk.Repository
                 .ToArray();
         }
 
+        /// <summary>
+        /// Sets Task State
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public PmsResponse SetState(Guid id, State state)
         {
             var response = new PmsResponse();
@@ -129,6 +158,13 @@ namespace PMS.Marchuk.Repository
             return response;
         }
 
+        /// <summary>
+        /// Updates Task
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <param name="name">Name</param>
+        /// <param name="description">Description</param>
+        /// <returns></returns>
         public PmsResponse Update(Guid id, string name, string description)
         {
             var response = new PmsResponse();

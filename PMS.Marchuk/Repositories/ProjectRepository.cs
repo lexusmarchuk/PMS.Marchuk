@@ -16,6 +16,12 @@ namespace PMS.Marchuk.Repository
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Attaches Project to Parent Project
+        /// </summary>
+        /// <param name="mainProjectId">Parent Project Id</param>
+        /// <param name="childProjectId">Current Project Id</param>
+        /// <returns></returns>
         public PmsResponse AttachProject(Guid mainProjectId, Guid childProjectId)
         {
             var response = new PmsResponse();
@@ -55,6 +61,12 @@ namespace PMS.Marchuk.Repository
             return response;
         }
 
+        /// <summary>
+        /// Create Project
+        /// </summary>
+        /// <param name="code">Code</param>
+        /// <param name="name">Name</param>
+        /// <returns></returns>
         public PmsResponse Create(string code, string name)
         {
             var response = new PmsResponse();
@@ -85,6 +97,11 @@ namespace PMS.Marchuk.Repository
             return response;
         }
 
+        /// <summary>
+        /// Delete Project
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns></returns>
         public PmsResponse Delete(Guid id)
         {
             var response = new PmsResponse();
@@ -106,6 +123,11 @@ namespace PMS.Marchuk.Repository
             return response;
         }
 
+        /// <summary>
+        /// Find projects
+        /// </summary>
+        /// <param name="f">Search expression</param>
+        /// <returns></returns>
         public IEnumerable<Project> Find(Expression<Func<Project, bool>> f)
         {
             return _dbContext.Projects.Where(f)
@@ -113,6 +135,11 @@ namespace PMS.Marchuk.Repository
                 .ToArray();
         }
 
+        /// <summary>
+        /// Get Project by Code.
+        /// </summary>
+        /// <param name="code">Code</param>
+        /// <returns></returns>
         public Project GetByCode(string code)
         {
             Project p = Find(x => x.Code.Equals(code)).FirstOrDefault();
@@ -120,6 +147,13 @@ namespace PMS.Marchuk.Repository
             return p;
         }
 
+        /// <summary>
+        /// Update Project
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <param name="name">Name</param>
+        /// <param name="state">State</param>
+        /// <returns></returns>
         public PmsResponse Update(Guid id, string name, State? state)
         {
             var response = new PmsResponse();
